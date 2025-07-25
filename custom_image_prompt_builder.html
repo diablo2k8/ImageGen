@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom AI Image Prompt Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      color: #38bdf8;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #38bdf8;
+      color: black;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+    .output {
+      margin-top: 2rem;
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    .presets button {
+      background-color: #334155;
+      color: #f1f5f9;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Image Prompt Generator</h1>
+
+  <div class="presets">
+    <strong>Presets:</strong><br />
+    <button onclick="applyPreset('cyberpunk portrait')">Cyberpunk Portrait</button>
+    <button onclick="applyPreset('fantasy landscape')">Fantasy Landscape</button>
+    <button onclick="applyPreset('product design')">Futuristic Product</button>
+    <button onclick="applyPreset('anime village')">Anime Village</button>
+  </div>
+
+  <label for="subject">Subject/Object</label>
+  <input type="text" id="subject" placeholder="e.g., futuristic samurai, enchanted sword" />
+
+  <label for="setting">Setting/Background</label>
+  <input type="text" id="setting" placeholder="e.g., neon-lit alley, floating island" />
+
+  <label for="style">Art Style</label>
+  <select id="style">
+    <option>Realistic / Hyperreal</option>
+    <option>Anime / Cartoon</option>
+    <option>Cyberpunk / Steampunk</option>
+    <option>Fantasy / Dark Fantasy</option>
+    <option>Photographic / Cinematic</option>
+  </select>
+
+  <label for="lighting">Lighting</label>
+  <input type="text" id="lighting" placeholder="e.g., golden hour, soft ambient glow" />
+
+  <label for="angle">Camera Angle</label>
+  <input type="text" id="angle" placeholder="e.g., close-up, bird's-eye view" />
+
+  <label for="palette">Color Palette</label>
+  <input type="text" id="palette" placeholder="e.g., neon tones, muted earth colors" />
+
+  <label for="effects">Visual Effects / Mood</label>
+  <input type="text" id="effects" placeholder="e.g., floating particles, eerie fog" />
+
+  <label for="inspiration">Inspiration / Artist</label>
+  <input type="text" id="inspiration" placeholder="e.g., Studio Ghibli, Blade Runner" />
+
+  <button onclick="generatePrompt()">Generate Prompt</button>
+
+  <div class="output" id="promptOutput"></div>
+
+  <script>
+    function generatePrompt() {
+      const subject = document.getElementById('subject').value;
+      const setting = document.getElementById('setting').value;
+      const style = document.getElementById('style').value;
+      const lighting = document.getElementById('lighting').value;
+      const angle = document.getElementById('angle').value;
+      const palette = document.getElementById('palette').value;
+      const effects = document.getElementById('effects').value;
+      const inspiration = document.getElementById('inspiration').value;
+
+      const prompt = `${subject}, in a ${setting}, ${style} style, ${lighting} lighting, ${angle}, ${palette} palette, with ${effects}, inspired by ${inspiration}`;
+      document.getElementById('promptOutput').innerText = prompt;
+    }
+
+    function applyPreset(type) {
+      switch(type) {
+        case 'cyberpunk portrait':
+          document.getElementById('subject').value = "female cybernetic hacker with neon-blue hair";
+          document.getElementById('setting').value = "rainy neon-lit alley";
+          document.getElementById('style').value = "Cyberpunk / Steampunk";
+          document.getElementById('lighting').value = "cinematic, neon backlight";
+          document.getElementById('angle').value = "close-up portrait";
+          document.getElementById('palette').value = "vibrant neon";
+          document.getElementById('effects').value = "rain particles, lens flare";
+          document.getElementById('inspiration').value = "Blade Runner";
+          break;
+        case 'fantasy landscape':
+          document.getElementById('subject').value = "floating citadel with glowing runes";
+          document.getElementById('setting').value = "stormy clouds over haunted forest";
+          document.getElementById('style').value = "Fantasy / Dark Fantasy";
+          document.getElementById('lighting').value = "dramatic light and shadows";
+          document.getElementById('angle').value = "bird's-eye view";
+          document.getElementById('palette').value = "bluish-gray";
+          document.getElementById('effects').value = "fog, magical aura";
+          document.getElementById('inspiration').value = "Dark Souls";
+          break;
+        case 'product design':
+          document.getElementById('subject').value = "futuristic sneakers with glowing soles";
+          document.getElementById('setting').value = "minimalist showroom";
+          document.getElementById('style').value = "Photographic / Cinematic";
+          document.getElementById('lighting').value = "high contrast studio lighting";
+          document.getElementById('angle').value = "product shot, side view";
+          document.getElementById('palette').value = "neon-accented white";
+          document.getElementById('effects').value = "glow effects";
+          document.getElementById('inspiration').value = "Nike x Cyberpunk 2077";
+          break;
+        case 'anime village':
+          document.getElementById('subject').value = "peaceful mountain village with cherry blossoms";
+          document.getElementById('setting').value = "path lined with torii gates";
+          document.getElementById('style').value = "Anime / Cartoon";
+          document.getElementById('lighting').value = "soft morning light";
+          document.getElementById('angle').value = "wide-angle landscape";
+          document.getElementById('palette').value = "warm pastel tones";
+          document.getElementById('effects').value = "drifting petals, light fog";
+          document.getElementById('inspiration').value = "Studio Ghibli";
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
